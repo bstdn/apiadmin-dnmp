@@ -2,7 +2,7 @@ version: "3"
 services:
   nginx:
     build:
-      context: ./services/nginx
+      context: ../dnmp/services/nginx
       args:
         NGINX_VERSION: ${NGINX_VERSION}
         CONTAINER_PACKAGE_URL: ${CONTAINER_PACKAGE_URL}
@@ -27,7 +27,7 @@ services:
 
   php:
     build:
-      context: ./services/php
+      context: ../dnmp/services/php
       args:
         PHP_VERSION: php:${PHP_VERSION}-fpm-alpine
         CONTAINER_PACKAGE_URL: ${CONTAINER_PACKAGE_URL}

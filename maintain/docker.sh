@@ -8,16 +8,15 @@
 
 ROOT=`pwd`
 
+if [ ! -f dnmp/.env ]; then
+  cp maintain/env.apiadmin dnmp/.env
+fi
+
+if [ ! -f dnmp/docker-compose.yml ]; then
+  cp maintain/docker-compose.apiadmin.yml dnmp/docker-compose.yml
+fi
+
 cd dnmp
-
-if [ ! -f .env ]; then
-  cp env.apiadmin .env
-fi
-
-if [ ! -f docker-compose.yml ]; then
-  cp docker-compose.apiadmin.yml docker-compose.yml
-fi
-
 docker-compose up -d
 if [ "$?" != "0" ]; then
   echo "未启动Docker"

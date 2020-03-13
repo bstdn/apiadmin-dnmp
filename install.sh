@@ -138,9 +138,7 @@ case $i in
     cd ${ROOT}
     if [ ! -f dnmp/services/nginx/conf.d/apiadmin.conf ]; then
       cp maintain/apiadmin.conf dnmp/services/nginx/conf.d/
-      if [ -f dnmp/services/nginx/conf.d/apiadmin.conf ]; then
-        sed -i "" "s#{server_name}#${APIADMIN_SERVER_NAME}#" dnmp/services/nginx/conf.d/apiadmin.conf
-      fi
+      docker exec -it nginx /bin/sh -c 'sed -i "s#{server_name}#'${APIADMIN_SERVER_NAME}'#" /etc/nginx/conf.d/apiadmin.conf'
       docker exec -it nginx nginx -s reload
       if [ $? -ne 0 ]; then
         echo "启动DNMP服务后再试"
@@ -156,18 +154,14 @@ case $i in
     echo
     echo "[9-1]配置cache"
     cd ${ROOT}/dnmp && source .env && cd ${SOURCE_DIR}
-    if [ -f ApiAdmin/config/cache.php ]; then
-      sed -i "" "s#127.0.0.1#redis#" ApiAdmin/config/cache.php
-    fi
+    docker exec -it php /bin/sh -c 'sed -i "s#127.0.0.1#redis#" /www/ApiAdmin/config/cache.php'
     echo "[9-1]执行完毕"
     ;;
   10)
     echo
     echo "[10-1]配置Api地址"
     cd ${ROOT}/dnmp && source .env && cd ${SOURCE_DIR}
-    if [ -f ApiAdmin-WEB/src/config/index.js ]; then
-      sed -i "" "s#dev: 'https://api.apiadmin.org/#dev: 'http://${APIADMIN_SERVER_NAME}/#" ApiAdmin-WEB/src/config/index.js
-    fi
+    docker exec -it php /bin/sh -c 'sed -i "s#https://api.apiadmin.org/#http://'${APIADMIN_SERVER_NAME}'/#" /www/ApiAdmin-WEB/src/config/index.js'
     echo "[10-1]执行完毕"
     ;;
   11)
