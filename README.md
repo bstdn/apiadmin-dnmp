@@ -48,6 +48,8 @@ cd apiadmin-dnmp
   9）配置cache
   10）配置Api地址
   11）运行ApiAdmin-WEB项目
+  12）克隆ApiAdmin-Element项目，npm install（未安装npm则退出）
+  13）运行ApiAdmin-Element项目
 
 请输入希望执行的序号，可多选，空格键分开
 直接回车则全选（不包括0），Ctrl-C 退出脚本：
@@ -58,6 +60,7 @@ cd apiadmin-dnmp
 - [dnmp](https://gitee.com/bstdn/dockerfile/tree/master/dnmp)
 - [ApiAdmin](https://gitee.com/apiadmin/ApiAdmin)
 - [ApiAdmin-WEB](https://gitee.com/apiadmin/ApiAdmin-WEB)
+- [ApiAdmin-Element](https://gitee.com/apiadmin/ApiAdmin-Element)
 
 ## 赞赏
 
