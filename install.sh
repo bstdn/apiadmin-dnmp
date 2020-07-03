@@ -21,13 +21,15 @@ cat <<EOF >&1
   9）配置cache
   10）配置Api地址
   11）运行ApiAdmin-WEB项目
+  12）克隆ApiAdmin-Element项目，npm install（未安装npm则退出）
+  13）运行ApiAdmin-Element项目
 EOF
 
 echo
 echo "请输入希望执行的序号，可多选，空格键分开"
 read -p "直接回车则全选（不包括0），Ctrl-C 退出脚本：" I_WANT_IT
 if [ "$I_WANT_IT" == "" ]; then
-  I_WANT_IT="1 2 3 4 5 6 7 8 9 10 11"
+  I_WANT_IT="1 2 3 4 5 6 7 8 9 10 11 12 13"
 fi
 
 for i in $I_WANT_IT
@@ -173,6 +175,42 @@ case $i in
       exit 1
     fi
     cd ApiAdmin-WEB
+    npm run dev
+    echo "[11-1]执行完毕"
+    ;;
+  12)
+    echo
+    echo "[12-1]检测npm"
+    npm -v 2>/dev/null 1>/dev/null
+    if [ $? -ne 0 ]; then
+      echo "npm 尚未安装，请安装后再试"
+      exit 1
+    fi
+    echo "[12-1]执行完毕"
+    echo
+    echo "[12-2]克隆ApiAdmin-Element项目"
+    cd ${ROOT}/dnmp && source .env && cd ${SOURCE_DIR}
+    if [ ! -d ApiAdmin-Element ]; then
+      git clone ${APIADMIN_ELEMENT_GIT_URL}
+    fi
+    echo "[12-2]执行完毕"
+    echo
+    echo "[12-3]执行 npm install"
+    if [ ! -d ApiAdmin-Element/node_modules ]; then
+      cd ApiAdmin-Element
+      npm install --registry=https://registry.npm.taobao.org
+    fi
+    echo "[12-3]执行完毕"
+    ;;
+  13)
+    echo
+    echo "[11-1]运行ApiAdmin-Element项目"
+    cd ${ROOT}/dnmp && source .env && cd ${SOURCE_DIR}
+    if [ ! -d ApiAdmin-Element ]; then
+      echo "ApiAdmin-Element 不存在"
+      exit 1
+    fi
+    cd ApiAdmin-Element
     npm run dev
     echo "[11-1]执行完毕"
     ;;
