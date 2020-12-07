@@ -42,14 +42,15 @@ cd apiadmin-dnmp
   3）克隆ApiAdmin项目，composer install
   4）检测环境以及配置数据库
   5）数据库迁移
-  6）查看账号密码
-  7）克隆ApiAdmin-WEB项目，npm install（未安装npm则退出）
-  8）配置nginx（需手动修改/etc/hosts）
-  9）配置cache
-  10）配置Api地址
-  11）运行ApiAdmin-WEB项目
-  12）克隆ApiAdmin-Element项目，npm install（未安装npm则退出）
-  13）运行ApiAdmin-Element项目
+  6）构建后端路由（ApiAdmin5.x）
+  7）查看账号密码
+  8）克隆ApiAdmin-WEB项目，npm install（未安装npm则退出）
+  9）配置nginx（需手动修改/etc/hosts）
+  10）配置cache
+  11）配置Api地址
+  12）运行ApiAdmin-WEB项目
+  13）克隆ApiAdmin-Element项目，npm install（未安装npm则退出）
+  14）运行ApiAdmin-Element项目
 
 请输入希望执行的序号，可多选，空格键分开
 直接回车则全选（不包括0），Ctrl-C 退出脚本：
