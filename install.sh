@@ -146,9 +146,9 @@ case $i in
     fi
     echo "[8-3]执行完毕"
     ;;
-  8)
+  9)
     echo
-    echo "[8-1]配置nginx"
+    echo "[9-1]配置nginx"
     source ${ROOT}/dnmp/.env
     cd ${ROOT}
     if [ ! -f dnmp/services/nginx/conf.d/apiadmin.conf ]; then
@@ -163,7 +163,7 @@ case $i in
     echo "手动修改/etc/hosts"
     echo "添加一行"
     echo "127.0.0.1 ${APIADMIN_SERVER_NAME}"
-    echo "[8-1]执行完毕"
+    echo "[9-1]执行完毕"
     ;;
   10)
     echo
